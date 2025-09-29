@@ -20,6 +20,10 @@ public class PlayerMovement : MonoBehaviour
     /// Indica cada cuanto tiempo debe aplicarse la fuerza.
     /// </summary>
     private float intervaloTiempo;
+    /// <summary>
+    /// Indica la velocidad aplicada en el movimiento lateral.
+    /// </summary>
+    private float velocidadLateral;
     #endregion
 
     #region Ciclo de vida del Script
@@ -29,10 +33,15 @@ public class PlayerMovement : MonoBehaviour
         fuerzaPorAplicar = new Vector3(0, 0, 300f);
         tiempoDesdeUltimaFuerza = 0f;
         intervaloTiempo = 2f;
+        velocidadLateral = 2f;
     }
-
-    // Update is called once per frame
-    void FixedUpdate()
+    void Update()
+    {
+        float movimientoHorizontal = Input.GetAxis("Horizontal");
+        transform.Translate(movimientoHorizontal*velocidadLateral*Time.deltaTime,0,0);
+    }
+    // Logica para la aplicacion de fuerzas
+    private void FixedUpdate()
     {
         tiempoDesdeUltimaFuerza += Time.fixedDeltaTime;
         if (tiempoDesdeUltimaFuerza >= intervaloTiempo)
