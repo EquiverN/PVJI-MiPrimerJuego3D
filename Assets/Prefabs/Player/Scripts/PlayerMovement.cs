@@ -39,12 +39,12 @@ public class PlayerMovement : MonoBehaviour
         tiempoDesdeUltimaFuerza = 0f;
         intervaloTiempo = 2f;
         //velocidadLateral = 5;
-        SetStrategy(new MovimientoAcelerado());
+        //SetStrategy(new MovimientoAcelerado());
         player = new Player(5f,5f);
     }
-    void Update()
+    public void MovePlayer(float input)
     {
-        strategy.Move(transform, player);
+        strategy.Move(transform, player, input);
     }
     // Logica para la aplicacion de fuerzas
     private void FixedUpdate()
